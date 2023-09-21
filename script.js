@@ -1,3 +1,6 @@
+let Name = prompt("Как Вас зовут?");
+alert("Вас зовут " + Name + "!");
+
 const title = 1;
 const screens = 2;
 const screenPrice = 3;
