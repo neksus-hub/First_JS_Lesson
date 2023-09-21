@@ -1,6 +1,4 @@
-let Name = prompt("Как Вас зовут?");
-alert("Вас зовут " + Name + "!");
-
+alert("Hello, World!");
 console.log("Hello, World!");
 
 const title = 1;
