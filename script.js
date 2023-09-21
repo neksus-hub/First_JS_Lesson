@@ -1,4 +1,5 @@
 alert("Hello, World!");
+console.log("Hello, World!");
 
 const title = 1;
 const screens = 2;
