@@ -2,6 +2,7 @@ const title = "PROJECT";
 console.log(typeof title);
 const screens = "Простые, Сложные, Интерактивные";
 console.log(screens);
+console.log(screens.length);
 const screenPrice = 1613;
 console.log(screenPrice);
 const rollback = 14;
