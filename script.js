@@ -33,5 +33,6 @@ console.log(
     Math.floor(fullPrice / 13.2) +
     " юаней"
 );
+console.log(Math.floor(fullPrice * (rollback / 100)));
 const adaptive = true;
 console.log(typeof adaptive);
