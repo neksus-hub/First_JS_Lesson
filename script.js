@@ -3,6 +3,7 @@ console.log(typeof title);
 const screens = "Простые, Сложные, Интерактивные";
 console.log(screens);
 console.log(screens.length);
+console.log(screens.toLowerCase());
 const screenPrice = 1613;
 console.log(screenPrice);
 console.log(
