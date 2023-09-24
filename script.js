@@ -1,9 +1,12 @@
-alert("Hello, World!");
-console.log("Hello, World!");
-
-const title = 1;
-const screens = 2;
-const screenPrice = 3;
-const rollback = 4;
-const fullPrice = 5;
-const adaptive = 6;
+const title = "PROJECT";
+console.log(typeof title);
+const screens = "Простые, Сложные, Интерактивные";
+console.log(screens);
+const screenPrice = 1613;
+console.log(screenPrice);
+const rollback = 14;
+console.log(rollback);
+const fullPrice = 100000;
+console.log(typeof fullPrice);
+const adaptive = true;
+console.log(typeof adaptive);
