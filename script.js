@@ -5,7 +5,7 @@ console.log(screens);
 console.log(screens.length);
 screens = screens.toLowerCase();
 console.log(screens.split(","));
-const screenPrice = 1613;
+let screenPrice = 1613;
 console.log(screenPrice);
 console.log(
   "Стоимость экрана: " +
@@ -42,3 +42,6 @@ console.log(title);
 
 screens = prompt("Какие экраны нужно разработать?");
 console.log(screens);
+
+screenPrice = +prompt("Сколько будет стоить данная работа?");
+console.log(screenPrice);
