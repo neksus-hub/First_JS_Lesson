@@ -20,7 +20,7 @@ console.log(
 );
 const rollback = 14;
 console.log(rollback);
-const fullPrice = 100000;
+let fullPrice = 100000;
 console.log(typeof fullPrice);
 console.log(
   "Стоимость разработки сайта: " +
@@ -58,3 +58,9 @@ let service2 = prompt("Какой дополнительный тип услуг
 let servicePrice2 = +prompt("Сколько это будет стоить?");
 console.log(service2);
 console.log(servicePrice2);
+
+fullPrice = screenPrice + servicePrice1 + servicePrice2;
+console.log(fullPrice);
+
+let servicePrecentPrice = fullPrice - Math.floor((fullPrice / 100) * rollback);
+console.log(servicePrecentPrice);
