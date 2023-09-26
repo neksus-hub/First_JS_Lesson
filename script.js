@@ -1,4 +1,4 @@
-const title = "PROJECT";
+let title = "PROJECT";
 console.log(typeof title);
 let screens = "Простые, Сложные, Интерактивные";
 console.log(screens);
@@ -36,3 +36,6 @@ console.log(
 console.log(Math.floor(fullPrice * (rollback / 100)));
 const adaptive = true;
 console.log(typeof adaptive);
+
+title = prompt("Как называется Ваш проект?");
+console.log(title);
