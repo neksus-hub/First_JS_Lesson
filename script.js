@@ -34,7 +34,7 @@ console.log(
     " юаней"
 );
 console.log(Math.floor(fullPrice * (rollback / 100)));
-const adaptive = true;
+let adaptive = true;
 console.log(typeof adaptive);
 
 title = prompt("Как называется Ваш проект?");
@@ -45,3 +45,6 @@ console.log(screens);
 
 screenPrice = +prompt("Сколько будет стоить данная работа?");
 console.log(screenPrice);
+
+adaptive = confirm("Нужен ли адаптив на сайте?");
+console.log(adaptive);
