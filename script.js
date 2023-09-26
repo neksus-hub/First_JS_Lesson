@@ -39,3 +39,6 @@ console.log(typeof adaptive);
 
 title = prompt("Как называется Ваш проект?");
 console.log(title);
+
+screens = prompt("Какие экраны нужно разработать?");
+console.log(screens);
