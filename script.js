@@ -48,3 +48,13 @@ console.log(screenPrice);
 
 adaptive = confirm("Нужен ли адаптив на сайте?");
 console.log(adaptive);
+
+let service1 = prompt("Какой дополнительный тип услуги нужен?");
+let servicePrice1 = +prompt("Сколько это будет стоить?");
+console.log(service1);
+console.log(servicePrice1);
+
+let service2 = prompt("Какой дополнительный тип услуги нужен?");
+let servicePrice2 = +prompt("Сколько это будет стоить?");
+console.log(service2);
+console.log(servicePrice2);
