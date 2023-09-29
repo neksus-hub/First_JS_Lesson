@@ -33,6 +33,11 @@ const gallServicePrices = function () {
 };
 gallServicePrices();
 
+function getFullPrice() {
+  fullPrice = screenPrice + allServicePrices;
+}
+getFullPrice();
+
 //Функциональный блок
 screens = screens.toLowerCase();
 
@@ -45,6 +50,7 @@ console.log(typeof title);
 console.log(typeof fullPrice);
 console.log(typeof adaptive);
 
+console.log(fullPrice);
 console.log(allServicePrices);
 console.log(getRollBackMessage(fullPrice));
 console.log(screens);
