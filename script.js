@@ -1,11 +1,55 @@
+"use strict";
+// Блок переменных
 let title = "PROJECT";
-console.log(typeof title);
 let screens = "Простые, Сложные, Интерактивные";
+let screenPrice = 1613;
+const rollback = 14;
+let fullPrice = 100000;
+let adaptive = true;
+
+let service1;
+let servicePrice1;
+let service2;
+let servicePrice2;
+let servicePrecentPrice;
+
+//Блок объявления функций
+
+//Функциональный блок
+
+title = prompt("Как называется Ваш проект?");
+screens = prompt("Какие экраны нужно разработать?");
+screenPrice = +prompt("Сколько будет стоить данная работа?");
+adaptive = confirm("Нужен ли адаптив на сайте?");
+service1 = prompt("Какой дополнительный тип услуги нужен?");
+servicePrice1 = +prompt("Сколько это будет стоить?");
+service2 = prompt("Какой дополнительный тип услуги нужен?");
+servicePrice2 = +prompt("Сколько это будет стоить?");
+
+screens = screens.toLowerCase();
+
+fullPrice = screenPrice + servicePrice1 + servicePrice2;
+
+servicePrecentPrice = fullPrice - Math.floor((fullPrice / 100) * rollback);
+
+if (fullPrice > 30000) {
+  console.log("Даем скидку в 10%");
+} else if (fullPrice > 15000 && fullPrice < 30000) {
+  console.log("Даем скидку в 5%");
+} else if (fullPrice < 15000 && fullPrice > 0) {
+  console.log("Скидка не предусмотрена");
+} else if (fullPrice <= 0) {
+  console.log("Что-то пошло не так");
+}
+
+// мусорный блок
+console.log(typeof title);
+console.log(typeof fullPrice);
+console.log(typeof adaptive);
+
 console.log(screens);
 console.log(screens.length);
-screens = screens.toLowerCase();
 console.log(screens.split(","));
-let screenPrice = 1613;
 console.log(screenPrice);
 console.log(
   "Стоимость экрана: " +
@@ -18,10 +62,7 @@ console.log(
     Math.floor(screenPrice / 13.2) +
     " юаней"
 );
-const rollback = 14;
 console.log(rollback);
-let fullPrice = 100000;
-console.log(typeof fullPrice);
 console.log(
   "Стоимость разработки сайта: " +
     fullPrice +
@@ -34,43 +75,13 @@ console.log(
     " юаней"
 );
 console.log(Math.floor(fullPrice * (rollback / 100)));
-let adaptive = true;
-console.log(typeof adaptive);
-
-title = prompt("Как называется Ваш проект?");
-console.log(title);
-
-screens = prompt("Какие экраны нужно разработать?");
-console.log(screens);
-
-screenPrice = +prompt("Сколько будет стоить данная работа?");
-console.log(screenPrice);
-
-adaptive = confirm("Нужен ли адаптив на сайте?");
-console.log(adaptive);
-
-let service1 = prompt("Какой дополнительный тип услуги нужен?");
-let servicePrice1 = +prompt("Сколько это будет стоить?");
 console.log(service1);
 console.log(servicePrice1);
-
-let service2 = prompt("Какой дополнительный тип услуги нужен?");
-let servicePrice2 = +prompt("Сколько это будет стоить?");
+console.log(title);
+console.log(screens);
+console.log(screenPrice);
+console.log(adaptive);
 console.log(service2);
 console.log(servicePrice2);
-
-fullPrice = screenPrice + servicePrice1 + servicePrice2;
 console.log(fullPrice);
-
-let servicePrecentPrice = fullPrice - Math.floor((fullPrice / 100) * rollback);
 console.log(servicePrecentPrice);
-
-if (fullPrice > 30000) {
-  console.log("Даем скидку в 10%");
-} else if (fullPrice > 15000 && fullPrice < 30000) {
-  console.log("Даем скидку в 5%");
-} else if (fullPrice < 15000 && fullPrice > 0) {
-  console.log("Скидка не предусмотрена");
-} else if (fullPrice <= 0) {
-  console.log("Что-то пошло не так");
-}
