@@ -9,7 +9,7 @@ let service1 = prompt("Какой дополнительный тип услуг
 let servicePrice1 = +prompt("Сколько это будет стоить?");
 let service2 = prompt("Какой дополнительный тип услуги нужен?");
 let servicePrice2 = +prompt("Сколько это будет стоить?");
-const rollback = 14;
+const rollback = 10;
 let fullPrice = 100000;
 let servicePrecentPrice;
 let allServicePrices;
@@ -46,18 +46,22 @@ function ucFirst(str) {
   return ucFirstSymbolTitle;
 }
 
+function getServicePercentPrices() {
+  servicePrecentPrice = fullPrice - Math.floor((fullPrice / 100) * rollback);
+  return servicePrecentPrice;
+}
+
 //Функциональный блок
+
 screens = screens.toLowerCase();
 
-fullPrice = screenPrice + servicePrice1 + servicePrice2;
-
-servicePrecentPrice = fullPrice - Math.floor((fullPrice / 100) * rollback);
-
 // мусорный блок
+
 console.log(typeof title);
 console.log(typeof fullPrice);
 console.log(typeof adaptive);
 
+console.log(getServicePercentPrices());
 console.log(ucFirst(title));
 console.log(fullPrice);
 console.log(allServicePrices);
