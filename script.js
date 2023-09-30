@@ -13,6 +13,7 @@ const rollback = 14;
 let fullPrice = 100000;
 let servicePrecentPrice;
 let allServicePrices;
+let firstSymbol;
 
 //Блок объявления функций
 
@@ -38,6 +39,13 @@ function getFullPrice() {
 }
 getFullPrice();
 
+function ucFirst(str) {
+  if (!str) return str;
+  let strTrim = str.trim();
+  let ucFirstSymbolTitle = strTrim[0].toUpperCase() + strTrim.slice(1);
+  return ucFirstSymbolTitle;
+}
+
 //Функциональный блок
 screens = screens.toLowerCase();
 
@@ -50,6 +58,7 @@ console.log(typeof title);
 console.log(typeof fullPrice);
 console.log(typeof adaptive);
 
+console.log(ucFirst(title));
 console.log(fullPrice);
 console.log(allServicePrices);
 console.log(getRollBackMessage(fullPrice));
