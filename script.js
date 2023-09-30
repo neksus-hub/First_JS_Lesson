@@ -16,6 +16,7 @@ let fullPrice = 100000;
 let servicePrecentPrice;
 let allServicePrices;
 let firstSymbol;
+let ucFirstSymbolTitle;
 
 //Блок объявления функций
 
@@ -32,30 +33,30 @@ const getRollBackMessage = function (price) {
 };
 
 const gallServicePrices = function () {
-  allServicePrices = servicePrice1 + servicePrice2;
+  return servicePrice1 + servicePrice2;
 };
-gallServicePrices();
 
 function getFullPrice() {
-  fullPrice = screenPrice + allServicePrices;
+  return screenPrice + allServicePrices;
 }
-getFullPrice();
 
 function ucFirst(str) {
   if (!str) return str;
   let strTrim = str.trim();
-  let ucFirstSymbolTitle = strTrim[0].toUpperCase() + strTrim.slice(1);
-  return ucFirstSymbolTitle;
+  return strTrim[0].toUpperCase() + strTrim.slice(1);
 }
 
 function getServicePercentPrices() {
-  servicePrecentPrice = fullPrice - Math.floor((fullPrice / 100) * rollback);
-  return servicePrecentPrice;
+  return fullPrice - Math.floor((fullPrice / 100) * rollback);
 }
 
 //Функциональный блок
 
 screens = screens.toLowerCase();
+allServicePrices = gallServicePrices();
+fullPrice = getFullPrice();
+ucFirstSymbolTitle = ucFirst(title);
+servicePrecentPrice = getServicePercentPrices();
 
 // мусорный блок
 
@@ -64,5 +65,6 @@ console.log(typeof fullPrice);
 console.log(typeof adaptive);
 
 console.log(screens);
+console.log(allServicePrices);
 console.log(getRollBackMessage(fullPrice));
-console.log(getServicePercentPrices());
+console.log(servicePrecentPrice);
