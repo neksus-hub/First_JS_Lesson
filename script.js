@@ -1,39 +1,57 @@
 "use strict";
 // Блок переменных
 
-let title = prompt("Как называется Ваш проект?");
-let screens = prompt("Какие экраны нужно разработать?");
-let screenPrice = +prompt("Сколько будет стоить данная работа?");
-let adaptive = confirm("Нужен ли адаптив на сайте?");
+let title;
+let screens;
+let screenPrice;
+let adaptive;
 
-let service1 = prompt("Какой дополнительный тип услуги нужен?");
-let servicePrice1 = +prompt("Сколько это будет стоить?");
-let service2 = prompt("Какой дополнительный тип услуги нужен?");
-let servicePrice2 = +prompt("Сколько это будет стоить?");
 const rollback = 10;
-
-let fullPrice = 100000;
+let fullPrice;
 let servicePrecentPrice;
 let allServicePrices;
 let firstSymbol;
 let ucFirstSymbolTitle;
+let service1;
+let service2;
 
 //Блок объявления функций
+
+const asking = function () {
+  title = prompt("Как называется Ваш проект?", "Калькулятор верстки");
+  screens = prompt("Какие экраны нужно разработать?", "Простые, сложные");
+  screenPrice = +prompt("Сколько будет стоить данная работа?", 20000);
+  adaptive = confirm("Нужен ли адаптив на сайте?");
+};
+
+const gallServicePrices = function () {
+  let sum = 0;
+  for (let i = 0; i < 2; i++) {
+    if (i === 0) {
+      service1 = prompt("Какой дополнительный тип услуги нужен?");
+    } else if (i === 1) {
+      service2 = prompt("Какой дополнительный тип услуги нужен?");
+    }
+
+    sum += +prompt("Сколько это будет стоить?");
+  }
+  return sum;
+};
+
+const showTypeOf = function (variable) {
+  console.log(variable, typeof variable);
+};
 
 const getRollBackMessage = function (price) {
   if (price >= 30000) {
     return "Даем скидку в 10%";
-  } else if (price > 15000 && price < 30000) {
+  } else if (price >= 15000 && price < 30000) {
     return "Даем скидку в 5%";
-  } else if (price < 15000 && price > 0) {
+  } else if (price < 15000 && price >= 0) {
     return "Скидка не предусмотрена";
   } else if (price <= 0) {
     return "Что-то пошло не так";
   }
-};
-
-const gallServicePrices = function () {
-  return servicePrice1 + servicePrice2;
 };
 
 function getFullPrice() {
@@ -58,7 +76,13 @@ fullPrice = getFullPrice();
 ucFirstSymbolTitle = ucFirst(title);
 servicePrecentPrice = getServicePercentPrices();
 
+showTypeOf(title);
+showTypeOf(screenPrice);
+showTypeOf(adaptive);
+
 // мусорный блок
+
+console.log("gallServicePrices", gallServicePrices());
 
 console.log(typeof title);
 console.log(typeof fullPrice);
