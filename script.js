@@ -17,10 +17,19 @@ let service2;
 
 //Блок объявления функций
 
+const isNumber = function (num) {
+  return !isNaN(parseFloat(num) && isFinite(num));
+};
+
 const asking = function () {
-  title = prompt("Как называется Ваш проект?", "Калькулятор верстки");
+  title = prompt("Как называется Ваш проект?");
   screens = prompt("Какие экраны нужно разработать?", "Простые, сложные");
-  screenPrice = +prompt("Сколько будет стоить данная работа?", 20000);
+  screenPrice = +prompt("Сколько будет стоить данная работа?");
+
+  do {
+    screenPrice = +prompt("Сколько будет стоить данная работа?");
+  } while (!isNumber(screenPrice));
+
   adaptive = confirm("Нужен ли адаптив на сайте?");
 };
 
@@ -69,22 +78,20 @@ function getServicePercentPrices() {
 }
 
 //Функциональный блок
+asking();
 
+ucFirstSymbolTitle = ucFirst(title);
 screens = screens.toLowerCase();
 allServicePrices = gallServicePrices();
 fullPrice = getFullPrice();
-ucFirstSymbolTitle = ucFirst(title);
 servicePrecentPrice = getServicePercentPrices();
 
-showTypeOf(title);
+showTypeOf(ucFirstSymbolTitle);
 showTypeOf(screenPrice);
 showTypeOf(adaptive);
 
 // мусорный блок
-
-console.log("gallServicePrices", gallServicePrices());
-
-console.log(typeof title);
+console.log(typeof ucFirstSymbolTitle);
 console.log(typeof fullPrice);
 console.log(typeof adaptive);
 
