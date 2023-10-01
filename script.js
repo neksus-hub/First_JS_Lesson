@@ -18,16 +18,16 @@ let service2;
 //Блок объявления функций
 
 const isNumber = function (num) {
-  return !isNaN(parseFloat(num) && isFinite(num));
+  return !isNaN(parseFloat(num)) && isFinite(num);
 };
 
 const asking = function () {
-  title = prompt("Как называется Ваш проект?");
+  title = prompt("Как называется Ваш проект?", "Калькулятор верстки");
   screens = prompt("Какие экраны нужно разработать?", "Простые, сложные");
-  screenPrice = +prompt("Сколько будет стоить данная работа?");
+  screenPrice = prompt("Сколько будет стоить данная работа?", 20000);
 
   do {
-    screenPrice = +prompt("Сколько будет стоить данная работа?");
+    screenPrice = prompt("Сколько будет стоить данная работа?", 20000);
   } while (!isNumber(screenPrice));
 
   adaptive = confirm("Нужен ли адаптив на сайте?");
@@ -35,6 +35,7 @@ const asking = function () {
 
 const gallServicePrices = function () {
   let sum = 0;
+  let sumPrice = 0;
   for (let i = 0; i < 2; i++) {
     if (i === 0) {
       service1 = prompt("Какой дополнительный тип услуги нужен?");
@@ -42,9 +43,15 @@ const gallServicePrices = function () {
       service2 = prompt("Какой дополнительный тип услуги нужен?");
     }
 
-    sum += +prompt("Сколько это будет стоить?");
+    sum = +prompt("Сколько это будет стоить?");
+
+    while (!isNumber(sum)) {
+      sum = +prompt("Сколько это будет стоить?");
+    }
+
+    sumPrice += sum;
   }
-  return sum;
+  return sumPrice;
 };
 
 const showTypeOf = function (variable) {
