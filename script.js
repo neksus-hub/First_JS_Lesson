@@ -24,11 +24,13 @@ const isNumber = function (num) {
 const asking = function () {
   title = prompt("Как называется Ваш проект?", "Калькулятор верстки");
   screens = prompt("Какие экраны нужно разработать?", "Простые, сложные");
-  screenPrice = +prompt("Сколько будет стоить данная работа?", 20000);
+  screenPrice = prompt("Сколько будет стоить данная работа?", 20000);
 
   do {
-    screenPrice = +prompt("Сколько будет стоить данная работа?", 20000);
+    screenPrice = prompt("Сколько будет стоить данная работа?", 20000);
   } while (!isNumber(screenPrice));
+
+  screenPrice = parseInt(screenPrice);
 
   adaptive = confirm("Нужен ли адаптив на сайте?");
 };
@@ -43,13 +45,13 @@ const gallServicePrices = function () {
       service2 = prompt("Какой дополнительный тип услуги нужен?");
     }
 
-    sum = +prompt("Сколько это будет стоить?");
+    sum = prompt("Сколько это будет стоить?");
 
     while (!isNumber(sum)) {
-      sum = +prompt("Сколько это будет стоить?");
+      sum = prompt("Сколько это будет стоить?");
     }
 
-    sumPrice += sum;
+    sumPrice += parseInt(sum);
   }
   return sumPrice;
 };
