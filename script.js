@@ -16,18 +16,16 @@ let service1;
 let service2;
 
 const appData = {
-  title,
-  screens,
-  screenPrice,
-  adaptive,
+  title: "",
+  screens: "",
+  screenPrice: 0,
+  adaptive: true,
   corollback: 10,
-  fullPrice,
-  servicePrecentPrice,
-  allServicePrices,
-  firstSymbol,
-  ucFirstSymbolTitle,
-  service1,
-  service2,
+  fullPrice: 0,
+  servicePrecentPrice: 0,
+  allServicePrices: 0,
+  service1: 0,
+  service2: 0,
 };
 
 //Блок объявления функций
