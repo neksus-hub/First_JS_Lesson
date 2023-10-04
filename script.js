@@ -1,44 +1,50 @@
 "use strict";
 // Блок переменных
 
-let title;
-let screens;
-let screenPrice;
-let adaptive;
+// let title;
+// let screens;
+// let screenPrice;
+// let adaptive;
 
-const rollback = 10;
-let fullPrice;
-let servicePrecentPrice;
-let allServicePrices;
-let firstSymbol;
-let ucFirstSymbolTitle;
-let service1;
-let service2;
+// const rollback = 10;
+// let fullPrice;
+// let servicePrecentPrice;
+// let allServicePrices;
+// let firstSymbol;
+// let ucFirstSymbolTitle;
+// let service1;
+// let service2;
 
 const appData = {
   title: "",
   screens: "",
   screenPrice: 0,
   adaptive: true,
-  corollback: 10,
+  rollback: 10,
   fullPrice: 0,
   servicePrecentPrice: 0,
   allServicePrices: 0,
   service1: 0,
   service2: 0,
   asking: function () {
-    title = prompt("Как называется Ваш проект?", "Калькулятор верстки");
-    screens = prompt("Какие экраны нужно разработать?", "Простые, сложные");
-    screenPrice = prompt("Сколько будет стоить данная работа?", 20000);
-  
+    appData.title = prompt("Как называется Ваш проект?", "Калькулятор верстки");
+    appData.screens = prompt(
+      "Какие экраны нужно разработать?",
+      "Простые, сложные"
+    );
+    appData.screenPrice = prompt("Сколько будет стоить данная работа?", 20000);
+
     do {
-      screenPrice = prompt("Сколько будет стоить данная работа?", 20000);
-    } while (!isNumber(screenPrice));
-  
-    screenPrice = parseInt(screenPrice);
-  
-    adaptive = confirm("Нужен ли адаптив на сайте?");
-  };
+      appData.screenPrice = prompt(
+        "Сколько будет стоить данная работа?",
+        20000
+      );
+    } while (!isNumber(appData.screenPrice));
+
+    appData.screenPrice = parseInt(appData.screenPrice);
+
+    appData.adaptive = confirm("Нужен ли адаптив на сайте?");
+  },
 };
 
 //Блок объявления функций
@@ -52,12 +58,12 @@ const gallServicePrices = function () {
   let sumPrice = 0;
   for (let i = 0; i < 2; i++) {
     if (i === 0) {
-      service1 = prompt("Какой дополнительный тип услуги нужен?");
+      appData.service1 = prompt("Какой дополнительный тип услуги нужен?");
     } else if (i === 1) {
-      service2 = prompt("Какой дополнительный тип услуги нужен?");
+      appData.service2 = prompt("Какой дополнительный тип услуги нужен?");
     }
 
-    sum = prompt("Сколько это будет стоить?");
+    sum = prompt("СколькappData.о это будет стоить?");
 
     while (!isNumber(sum)) {
       sum = prompt("Сколько это будет стоить?");
@@ -81,7 +87,7 @@ const getRollBackMessage = function (price) {
 };
 
 function getFullPrice() {
-  return screenPrice + allServicePrices;
+  return appData.screenPrice + appData.allServicePrices;
 }
 
 function ucFirst(str) {
@@ -91,16 +97,19 @@ function ucFirst(str) {
 }
 
 function getServicePercentPrices() {
-  return fullPrice - Math.floor((fullPrice / 100) * rollback);
+  return (
+    appData.fullPrice - Math.floor((appData.fullPrice / 100) * appData.rollback)
+  );
 }
 
 //Функциональный блок
-asking();
+appData.asking();
 
-ucFirstSymbolTitle = ucFirst(title);
-screens = screens.toLowerCase();
-allServicePrices = gallServicePrices();
-fullPrice = getFullPrice();
-servicePrecentPrice = getServicePercentPrices();
+appData.screens = appData.screens.toLowerCase();
+appData.allServicePrices = gallServicePrices();
+appData.fullPrice = getFullPrice();
+appData.servicePrecentPrice = getServicePercentPrices();
 
 // мусорный блок
+console.log(appData.fullPrice);
+console.log(appData.servicePrecentPrice);
