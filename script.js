@@ -15,6 +15,21 @@ let ucFirstSymbolTitle;
 let service1;
 let service2;
 
+const appData = {
+  title,
+  screens,
+  screenPrice,
+  adaptive,
+  corollback: 10,
+  fullPrice,
+  servicePrecentPrice,
+  allServicePrices,
+  firstSymbol,
+  ucFirstSymbolTitle,
+  service1,
+  service2,
+};
+
 //Блок объявления функций
 
 const isNumber = function (num) {
