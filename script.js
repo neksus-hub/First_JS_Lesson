@@ -16,6 +16,7 @@ let fullPrice = 100000;
 let servicePrecentPrice;
 let allServicePrices;
 let firstSymbol;
+let RollBackMessage;
 
 //Блок объявления функций
 
@@ -31,15 +32,13 @@ const getRollBackMessage = function (price) {
   }
 };
 
-const gallServicePrices = function () {
-  allServicePrices = servicePrice1 + servicePrice2;
+const gallServicePrices = function (price1, price2) {
+  return price1 + price2;
 };
-gallServicePrices();
 
-function getFullPrice() {
-  fullPrice = screenPrice + allServicePrices;
+function getFullPrice(price1, price2) {
+  return price1 + price2;
 }
-getFullPrice();
 
 function ucFirst(str) {
   if (!str) return str;
@@ -49,12 +48,15 @@ function ucFirst(str) {
 }
 
 function getServicePercentPrices() {
-  servicePrecentPrice = fullPrice - Math.floor((fullPrice / 100) * rollback);
-  return servicePrecentPrice;
+  return fullPrice - Math.floor((fullPrice / 100) * rollback);
 }
 
 //Функциональный блок
 
+RollBackMessage = getRollBackMessage(fullPrice);
+allServicePrices = gallServicePrices(servicePrice1, servicePrice2);
+fullPrice = getFullPrice(screenPrice, allServicePrices);
+servicePrecentPrice = getServicePercentPrices();
 screens = screens.toLowerCase();
 
 // мусорный блок
@@ -63,6 +65,8 @@ console.log(typeof title);
 console.log(typeof fullPrice);
 console.log(typeof adaptive);
 
-console.log(screens);
-console.log(getRollBackMessage(fullPrice));
-console.log(getServicePercentPrices());
+console.log("Необходимо разработать " + screens + " экраны");
+console.log(RollBackMessage);
+console.log(
+  "Итоговая сумма с учетом отката посреднику = " + servicePrecentPrice
+);
