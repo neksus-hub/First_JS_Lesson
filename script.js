@@ -92,11 +92,3 @@ fullPrice = getFullPrice();
 servicePrecentPrice = getServicePercentPrices();
 
 // мусорный блок
-console.log(typeof ucFirstSymbolTitle);
-console.log(typeof fullPrice);
-console.log(typeof adaptive);
-
-console.log(screens);
-console.log(allServicePrices);
-console.log(getRollBackMessage(fullPrice));
-console.log(servicePrecentPrice);
