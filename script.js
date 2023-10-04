@@ -56,10 +56,6 @@ const gallServicePrices = function () {
   return sumPrice;
 };
 
-const showTypeOf = function (variable) {
-  console.log(variable, typeof variable);
-};
-
 const getRollBackMessage = function (price) {
   if (price >= 30000) {
     return "Даем скидку в 10%";
@@ -94,10 +90,6 @@ screens = screens.toLowerCase();
 allServicePrices = gallServicePrices();
 fullPrice = getFullPrice();
 servicePrecentPrice = getServicePercentPrices();
-
-showTypeOf(ucFirstSymbolTitle);
-showTypeOf(screenPrice);
-showTypeOf(adaptive);
 
 // мусорный блок
 console.log(typeof ucFirstSymbolTitle);
