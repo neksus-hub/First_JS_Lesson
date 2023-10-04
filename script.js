@@ -26,26 +26,25 @@ const appData = {
   allServicePrices: 0,
   service1: 0,
   service2: 0,
+  asking: function () {
+    title = prompt("Как называется Ваш проект?", "Калькулятор верстки");
+    screens = prompt("Какие экраны нужно разработать?", "Простые, сложные");
+    screenPrice = prompt("Сколько будет стоить данная работа?", 20000);
+  
+    do {
+      screenPrice = prompt("Сколько будет стоить данная работа?", 20000);
+    } while (!isNumber(screenPrice));
+  
+    screenPrice = parseInt(screenPrice);
+  
+    adaptive = confirm("Нужен ли адаптив на сайте?");
+  };
 };
 
 //Блок объявления функций
 
 const isNumber = function (num) {
   return !isNaN(parseFloat(num)) && isFinite(num);
-};
-
-const asking = function () {
-  title = prompt("Как называется Ваш проект?", "Калькулятор верстки");
-  screens = prompt("Какие экраны нужно разработать?", "Простые, сложные");
-  screenPrice = prompt("Сколько будет стоить данная работа?", 20000);
-
-  do {
-    screenPrice = prompt("Сколько будет стоить данная работа?", 20000);
-  } while (!isNumber(screenPrice));
-
-  screenPrice = parseInt(screenPrice);
-
-  adaptive = confirm("Нужен ли адаптив на сайте?");
 };
 
 const gallServicePrices = function () {
