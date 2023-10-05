@@ -17,6 +17,7 @@ let servicePrecentPrice;
 let allServicePrices;
 let firstSymbol;
 let RollBackMessage;
+let nameProject;
 
 //Блок объявления функций
 
@@ -41,10 +42,7 @@ function getFullPrice(price1, price2) {
 }
 
 function ucFirst(str) {
-  if (!str) return str;
-  let strTrim = str.trim();
-  let ucFirstSymbolTitle = strTrim[0].toUpperCase() + strTrim.slice(1);
-  return ucFirstSymbolTitle;
+  return str.slice(0, 1).toUpperCase() + str.slice(1).toLowerCase();
 }
 
 function getServicePercentPrices() {
@@ -58,6 +56,7 @@ allServicePrices = gallServicePrices(servicePrice1, servicePrice2);
 fullPrice = getFullPrice(screenPrice, allServicePrices);
 servicePrecentPrice = getServicePercentPrices();
 screens = screens.toLowerCase();
+nameProject = ucFirst(title.trim());
 
 // мусорный блок
 
@@ -65,6 +64,7 @@ console.log(typeof title);
 console.log(typeof fullPrice);
 console.log(typeof adaptive);
 
+console.log(nameProject);
 console.log("Необходимо разработать " + screens + " экраны");
 console.log(RollBackMessage);
 console.log(
