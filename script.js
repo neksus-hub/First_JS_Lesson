@@ -96,6 +96,10 @@ const appData = {
     console.log(appData.allServicePrices);
     console.log(appData.fullPrice);
     console.log(appData.servicePrecentPrice);
+
+    for (let key in appData) {
+      console.log("Свойство/метод " + key + " " + "Значение: " + appData[key]);
+    }
   },
 };
 
