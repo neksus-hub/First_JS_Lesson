@@ -39,6 +39,7 @@ const appData = {
     appData.fullPrice = appData.getFullPrice();
     appData.servicePrecentPrice = appData.getServicePercentPrices();
     appData.screens = appData.screens.toLowerCase();
+    appData.logger();
   },
 
   ucFirst: function (str) {
@@ -91,6 +92,11 @@ const appData = {
   isNumber: function (num) {
     return !isNaN(parseFloat(num)) && isFinite(num) && num > 0;
   },
+  logger: function () {
+    console.log(appData.allServicePrices);
+    console.log(appData.fullPrice);
+    console.log(appData.servicePrecentPrice);
+  },
 };
 
 //Блок объявления функций
@@ -100,7 +106,3 @@ const appData = {
 appData.start();
 
 // мусорный блок
-
-console.log(appData.allServicePrices);
-console.log(appData.fullPrice);
-console.log(appData.servicePrecentPrice);
