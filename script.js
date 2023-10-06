@@ -1,19 +1,4 @@
 "use strict";
-// Блок переменных
-
-// let title;
-// let screens;
-// let screenPrice;
-// let adaptive;
-
-// const rollback = 10;
-// let fullPrice;
-// let servicePrecentPrice;
-// let allServicePrices;
-// let firstSymbol;
-// let ucFirstSymbolTitle;
-// let service1;
-// let service2;
 
 const appData = {
   title: "",
@@ -26,6 +11,7 @@ const appData = {
   allServicePrices: 0,
   service1: 0,
   service2: 0,
+  nameProject: "",
   asking: function () {
     appData.title = prompt("Как называется Ваш проект?", "Калькулятор верстки");
     appData.screens = prompt(
@@ -91,9 +77,7 @@ function getFullPrice() {
 }
 
 function ucFirst(str) {
-  if (!str) return str;
-  let strTrim = str.trim();
-  return strTrim[0].toUpperCase() + strTrim.slice(1);
+  return str[0].toUpperCase() + str.slice(1).toLowerCase();
 }
 
 function getServicePercentPrices() {
@@ -109,7 +93,9 @@ appData.screens = appData.screens.toLowerCase();
 appData.allServicePrices = gallServicePrices();
 appData.fullPrice = getFullPrice();
 appData.servicePrecentPrice = getServicePercentPrices();
+appData.nameProject = ucFirst(appData.title.trim());
 
 // мусорный блок
+console.log(appData.nameProject);
 console.log(appData.fullPrice);
 console.log(appData.servicePrecentPrice);
