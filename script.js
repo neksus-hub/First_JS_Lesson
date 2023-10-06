@@ -33,6 +33,14 @@ const appData = {
     appData.adaptive = confirm("Нужен ли адаптив на сайте?");
   },
 
+  start: function () {
+    appData.asking();
+    appData.allServicePrices = appData.gallServicePrices();
+    appData.fullPrice = appData.getFullPrice();
+    appData.servicePrecentPrice = appData.getServicePercentPrices();
+    appData.screens = appData.screens.toLowerCase();
+  },
+
   ucFirst: function (str) {
     return str[0].toUpperCase() + str.slice(1).toLowerCase();
   },
@@ -89,11 +97,7 @@ const appData = {
 
 //Функциональный блок
 
-appData.asking();
-appData.allServicePrices = appData.gallServicePrices();
-appData.fullPrice = appData.getFullPrice();
-appData.servicePrecentPrice = appData.getServicePercentPrices();
-appData.screens = appData.screens.toLowerCase();
+appData.start();
 
 // мусорный блок
 
