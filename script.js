@@ -12,10 +12,19 @@ const appData = {
   services: {},
 
   asking: function () {
-    appData.title = prompt("Как называется Ваш проект?", "Калькулятор верстки");
+    while (!isNaN(appData.title)) {
+      appData.title = prompt(
+        "Как называется Ваш проект?",
+        "Калькулятор верстки"
+      );
+    }
 
     for (let i = 0; i < 2; i++) {
-      let name = prompt("Какие типы экранов нужно разработать?");
+      let name = "";
+      do {
+        name = prompt("Какие типы экранов нужно разработать?");
+      } while (!isNaN(name));
+
       let price = 0;
 
       do {
@@ -27,17 +36,17 @@ const appData = {
         name: name,
         price: price,
       });
-
-      appData.screenPrice = appData.screens.reduce(function (sum, item) {
-        return sum + item.price;
-      }, 0);
     }
 
     appData.adaptive = confirm("Нужен ли адаптив на сайте?");
 
     for (let i = 0; i < 2; i++) {
-      let name = prompt("Какой дополнительный тип услуги нужен?");
+      let name = "";
       let sum = 0;
+
+      do {
+        name = prompt("Какой дополнительный тип услуги нужен?");
+      } while (!isNaN(name));
 
       do {
         sum = prompt("Сколько это будет стоить?");
@@ -47,10 +56,19 @@ const appData = {
     }
   },
 
+  addPrices: function () {
+    appData.screenPrice = appData.screens.reduce(function (sum, item) {
+      return sum + item.price;
+    }, 0);
+    for (let key in appData.services) {
+      appData.allServicePrices += appData.services[key];
+    }
+  },
+
   start: function () {
     appData.asking();
+    appData.addPrices();
     appData.ucFirst(appData.title.trim());
-    appData.gallServicePrices();
     appData.getFullPrice();
     appData.getServicePercentPrices();
     appData.logger();
@@ -58,12 +76,6 @@ const appData = {
 
   ucFirst: function (str) {
     appData.title = str[0].toUpperCase() + str.slice(1).toLowerCase();
-  },
-
-  gallServicePrices: function () {
-    for (let key in appData.services) {
-      appData.allServicePrices += appData.services[key];
-    }
   },
 
   getRollBackMessage: function (price) {
@@ -90,6 +102,10 @@ const appData = {
 
   isNumber: function (num) {
     return !isNaN(parseFloat(num)) && isFinite(num) && num > 0;
+  },
+
+  isString: function (str) {
+    return isNaN(str);
   },
 
   logger: function () {
