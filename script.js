@@ -27,9 +27,11 @@ const appData = {
         name: name,
         price: price,
       });
-    }
 
-    console.log(appData.screenPrice);
+      appData.screenPrice = appData.screens.reduce(function (sum, item) {
+        return sum + item.price;
+      }, 0);
+    }
 
     appData.adaptive = confirm("Нужен ли адаптив на сайте?");
 
