@@ -1,4 +1,5 @@
 "use strict";
+const title = document.getElementsByTagName("h1");
 
 const appData = {
   title: "",
@@ -22,13 +23,13 @@ const appData = {
     for (let i = 0; i < 2; i++) {
       let name = "";
       do {
-        name = prompt("Какие типы экранов нужно разработать?");
+        name = prompt("Какие типы экранов нужно разработать?", "простые");
       } while (!isNaN(name));
 
       let price = 0;
 
       do {
-        price = +prompt("Сколько будет стоить данная работа?");
+        price = +prompt("Сколько будет стоить данная работа?", "10000");
       } while (!appData.isNumber(price));
 
       appData.screens.push({
@@ -47,7 +48,10 @@ const appData = {
 
       if (i === 0) {
         do {
-          nameFirst = prompt("Какой дополнительный тип услуги нужен?");
+          nameFirst = prompt(
+            "Какой дополнительный тип услуги нужен?",
+            "метрика"
+          );
         } while (!isNaN(nameFirst));
         do {
           sum = prompt("Сколько это будет стоить?");
@@ -55,7 +59,10 @@ const appData = {
         appData.services[nameFirst] = +sum;
       } else if (i === 1) {
         do {
-          nameSecond = prompt("Какой дополнительный тип услуги нужен?");
+          nameSecond = prompt(
+            "Какой дополнительный тип услуги нужен?",
+            "метрика"
+          );
         } while (!isNaN(nameSecond));
         do {
           sum = prompt("Сколько это будет стоить?");
@@ -136,3 +143,4 @@ const appData = {
 appData.start();
 
 // мусорный блок
+console.log(title[0]);
