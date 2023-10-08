@@ -2,6 +2,8 @@
 const title = document.getElementsByTagName("h1");
 const buttons = document.getElementsByClassName("handler_btn");
 const buttonPlus = document.querySelector(".screen-btn");
+const listItemsFirst = document.querySelectorAll(".other-items.percent");
+const listItemsSecond = document.querySelectorAll(".other-items.number");
 
 const appData = {
   title: "",
@@ -148,3 +150,5 @@ appData.start();
 console.log(title[0]);
 console.log(buttons);
 console.log(buttonPlus);
+console.log(listItemsFirst);
+console.log(listItemsSecond);
