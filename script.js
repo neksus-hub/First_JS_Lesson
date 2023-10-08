@@ -41,16 +41,27 @@ const appData = {
     appData.adaptive = confirm("Нужен ли адаптив на сайте?");
 
     for (let i = 0; i < 2; i++) {
-      let name = "";
+      let nameFirst = "";
+      let nameSecond = "";
       let sum = 0;
 
-      do {
-        name = prompt("Какой дополнительный тип услуги нужен?");
-      } while (!isNaN(name));
-
-      do {
-        sum = prompt("Сколько это будет стоить?");
-      } while (!appData.isNumber(sum));
+      if (i === 0) {
+        do {
+          nameFirst = prompt("Какой дополнительный тип услуги нужен?");
+        } while (!isNaN(nameFirst));
+        do {
+          sum = prompt("Сколько это будет стоить?");
+        } while (!appData.isNumber(sum));
+        appData.services[nameFirst] = +sum;
+      } else if (i === 1) {
+        do {
+          nameSecond = prompt("Какой дополнительный тип услуги нужен?");
+        } while (!isNaN(nameSecond));
+        do {
+          sum = prompt("Сколько это будет стоить?");
+        } while (!appData.isNumber(sum));
+        appData.services[nameSecond] = +sum;
+      }
 
       appData.services[name] = +sum;
     }
@@ -109,6 +120,7 @@ const appData = {
   },
 
   logger: function () {
+    console.log(appData.services);
     console.log(appData.fullPrice);
     console.log(appData.servicePrecentPrice);
     console.log(appData.screens);
