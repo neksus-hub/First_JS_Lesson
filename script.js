@@ -62,8 +62,6 @@ const appData = {
         } while (!appData.isNumber(sum));
         appData.services[nameSecond] = +sum;
       }
-
-      appData.services[name] = +sum;
     }
   },
 
