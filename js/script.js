@@ -1,5 +1,7 @@
 "use strict";
 const title = document.getElementsByTagName("h1");
+const buttons = document.getElementsByClassName("handler_btn");
+const buttonPlus = document.querySelector(".screen-btn");
 
 const appData = {
   title: "",
@@ -144,3 +146,5 @@ appData.start();
 
 // мусорный блок
 console.log(title[0]);
+console.log(buttons);
+console.log(buttonPlus);
