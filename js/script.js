@@ -4,6 +4,9 @@ const buttons = document.getElementsByClassName("handler_btn");
 const buttonPlus = document.querySelector(".screen-btn");
 const listItemsFirst = document.querySelectorAll(".other-items.percent");
 const listItemsSecond = document.querySelectorAll(".other-items.number");
+const getInput = document.querySelector(
+  ".main-controls__item.rollback>.main-controls__range>input"
+);
 
 const appData = {
   title: "",
@@ -152,3 +155,4 @@ console.log(buttons);
 console.log(buttonPlus);
 console.log(listItemsFirst);
 console.log(listItemsSecond);
+console.log(getInput);
