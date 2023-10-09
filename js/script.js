@@ -8,6 +8,7 @@ const getInput = document.querySelector(
   ".main-controls__item.rollback>.main-controls__range>input"
 );
 const getSpan = document.querySelector(".main-controls__range>.range-value");
+let getScreenClass = document.querySelectorAll("div.screen");
 
 const appData = {
   title: "",
@@ -158,3 +159,4 @@ console.log(listItemsFirst);
 console.log(listItemsSecond);
 console.log(getInput);
 console.log(getSpan);
+console.log(getScreenClass);
