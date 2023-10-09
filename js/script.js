@@ -7,6 +7,7 @@ const listItemsSecond = document.querySelectorAll(".other-items.number");
 const getInput = document.querySelector(
   ".main-controls__item.rollback>.main-controls__range>input"
 );
+const getSpan = document.querySelector(".main-controls__range>.range-value");
 
 const appData = {
   title: "",
@@ -156,3 +157,4 @@ console.log(buttonPlus);
 console.log(listItemsFirst);
 console.log(listItemsSecond);
 console.log(getInput);
+console.log(getSpan);
