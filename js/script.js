@@ -1,12 +1,12 @@
 "use strict";
-const title = document.getElementsByTagName("h1");
-const buttons = document.getElementsByClassName("handler_btn");
+const title = document.getElementsByTagName("h1")[0];
+const startBtn = document.getElementsByClassName("handler_btn")[0];
 const buttonPlus = document.querySelector(".screen-btn");
 const listItemsFirst = document.querySelectorAll(".other-items.percent");
 const listItemsSecond = document.querySelectorAll(".other-items.number");
 const getInput = document.querySelectorAll("input.total-input");
 const getSpan = document.querySelector(".main-controls__range>.range-value");
-let getScreenClass = document.querySelectorAll("div.screen");
+let getScreenClass = document.querySelectorAll(".screen");
 
 const appData = {
   title: "",
@@ -18,36 +18,20 @@ const appData = {
   servicePrecentPrice: 0,
   allServicePrices: 0,
   services: {},
+  init: function () {
+    appData.addTitle();
+    startBtn.addEventListener("click", function () {
+      appData.start();
+    });
+    buttonPlus.addEventListener("click", function () {
+      appData.addScreenBlock();
+    });
+  },
+  addTitle: function () {
+    document.title = title.textContent;
+  },
 
   asking: function () {
-    while (!isNaN(appData.title)) {
-      appData.title = prompt(
-        "Как называется Ваш проект?",
-        "Калькулятор верстки"
-      );
-    }
-
-    for (let i = 0; i < 2; i++) {
-      let name = "";
-      do {
-        name = prompt("Какие типы экранов нужно разработать?", "простые");
-      } while (!isNaN(name));
-
-      let price = 0;
-
-      do {
-        price = +prompt("Сколько будет стоить данная работа?", "10000");
-      } while (!appData.isNumber(price));
-
-      appData.screens.push({
-        id: i,
-        name: name,
-        price: price,
-      });
-    }
-
-    appData.adaptive = confirm("Нужен ли адаптив на сайте?");
-
     for (let i = 0; i < 2; i++) {
       let nameFirst = "";
       let nameSecond = "";
@@ -88,13 +72,30 @@ const appData = {
     }
   },
 
+  addScreens: function () {
+    getScreenClass.forEach((screen, index) => {
+      const select = screen.querySelector("select");
+      const input = screen.querySelector("input");
+      const selectName = select.options[select.selectedIndex].textContent;
+      appData.screens.push({
+        id: index,
+        name: selectName,
+        price: +select.value * +input.value,
+      });
+      console.log(appData.screens);
+    });
+  },
+
+  addScreenBlock: function () {},
+
   start: function () {
-    appData.asking();
-    appData.addPrices();
-    appData.ucFirst(appData.title.trim());
-    appData.getFullPrice();
-    appData.getServicePercentPrices();
-    appData.logger();
+    appData.addScreens();
+    //appData.asking();
+    //appData.addPrices();
+    //appData.ucFirst(appData.title.trim());
+    //appData.getFullPrice();
+    //appData.getServicePercentPrices();
+    //appData.logger();
   },
 
   ucFirst: function (str) {
@@ -123,10 +124,6 @@ const appData = {
       Math.floor((appData.fullPrice / 100) * appData.rollback);
   },
 
-  isNumber: function (num) {
-    return !isNaN(parseFloat(num)) && isFinite(num) && num > 0;
-  },
-
   isString: function (str) {
     return isNaN(str);
   },
@@ -147,14 +144,6 @@ const appData = {
 
 //Функциональный блок
 
-appData.start();
+appData.init();
 
 // мусорный блок
-console.log(title[0]);
-console.log(buttons);
-console.log(buttonPlus);
-console.log(listItemsFirst);
-console.log(listItemsSecond);
-console.log(getInput);
-console.log(getSpan);
-console.log(getScreenClass);
