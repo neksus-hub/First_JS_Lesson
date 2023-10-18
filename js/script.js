@@ -37,6 +37,7 @@ const appData = {
   rollback: 10,
   fullPrice: 0,
   costIncludingInterest: 0,
+  costIncludingInterestSecond: 0,
   servicePrecentPrice: 0,
   serviceNumberPrice: 0,
   numberOfScreens: 0,
@@ -98,7 +99,7 @@ const appData = {
       +appData.screenPrice;
 
     appData.costIncludingInterest =
-      appData.fullPrice - (appData.fullPrice / 100) * +getSpan.value;
+      appData.fullPrice + (appData.fullPrice / 100) * +getSpan.value;
 
     for (let i = 0; i <= appData.screens.length - 1; i++) {
       appData.numberOfScreens += appData.screens[i].count;
@@ -209,6 +210,8 @@ rangeSpan.value = 0;
 getInputRange.addEventListener("input", function () {
   rangeSpan.innerHTML = getInputRange.value + "%";
   rangeSpan.value = +getInputRange.value;
+  getInputRollback.value = appData.costIncludingInterest =
+    appData.fullPrice + (appData.fullPrice / 100) * +getInputRange.value;
   console.log(rangeSpan.value);
 });
 
