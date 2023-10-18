@@ -12,9 +12,14 @@ const getInputCount = document.querySelectorAll("input.total-input")[1];
 const getInputServicePrice = document.querySelectorAll("input.total-input")[2];
 const getInputFullPrice = document.querySelectorAll("input.total-input")[3];
 const getInputRollback = document.querySelectorAll("input.total-input")[4];
+const numberScreens = document.querySelectorAll(
+  ".screen>.main-controls__input>input"
+)[0];
 
 const getSpan = document.querySelector(".main-controls__range>.range-value");
 let getScreenClass = document.querySelectorAll(".screen");
+
+console.log(numberScreens);
 
 const appData = {
   // Объект
@@ -58,7 +63,7 @@ const appData = {
     appData.fullPrice =
       appData.servicePrecentPrice +
       appData.serviceNumberPrice +
-      appData.screenPrice;
+      +appData.screenPrice;
   },
 
   addScreens: function () {
@@ -106,13 +111,20 @@ const appData = {
     });
   },
 
-  showInfo: function () {},
+  showInfo: function () {
+    getInput.value = appData.screenPrice;
+    getInputCount.value = +numberScreens.value;
+    getInputServicePrice.value =
+      appData.serviceNumberPrice + appData.servicePrecentPrice;
+    getInputFullPrice.value = appData.fullPrice;
+  },
 
   // запускаем метод addScreens, который пушит в screens значения
   start: function () {
     appData.addScreens();
     appData.addServices();
     appData.addPrices();
+    appData.showInfo();
     //appData.getServicePercentPrices();
     //appData.logger();
     console.log(appData);
