@@ -39,6 +39,7 @@ const appData = {
   costIncludingInterest: 0,
   servicePrecentPrice: 0,
   serviceNumberPrice: 0,
+  numberOfScreens: 0,
   servicesPercent: {},
   servicesNumber: {},
   screensSecond: [],
@@ -72,19 +73,6 @@ const appData = {
     }
   },
 
-  NumberOfScreens: function () {
-    numberScreens = document.querySelectorAll(
-      ".screen>.main-controls__input>input"
-    );
-
-    for (let i = 0; i <= numberScreens.length - 1; i++) {
-      if (numberScreens[i].value !== "") {
-        numberOfScreens += +numberScreens[i].value;
-      }
-    }
-    console.log(numberScreens);
-  },
-
   addTitle: function () {
     // добавляет title во вкладку
     document.title = title.textContent;
@@ -96,21 +84,25 @@ const appData = {
     }
 
     for (let key in appData.servicesNumber) {
-      appData.serviceNumberPrice += appData.servicesNumber[key];
+      appData.serviceNumberPrice += +appData.servicesNumber[key];
     }
 
     for (let key in appData.servicesPercent) {
       appData.servicePrecentPrice +=
-        appData.screenPrice * (appData.servicesPercent[key] / 100);
+        +appData.screenPrice * (+appData.servicesPercent[key] / 100);
     }
 
     appData.fullPrice =
-      appData.servicePrecentPrice +
-      appData.serviceNumberPrice +
+      +appData.servicePrecentPrice +
+      +appData.serviceNumberPrice +
       +appData.screenPrice;
 
     appData.costIncludingInterest =
-      appData.fullPrice - (appData.fullPrice * getSpan.value) / 100;
+      appData.fullPrice - (appData.fullPrice / 100) * +getSpan.value;
+
+    for (let i = 0; i <= appData.screens.length - 1; i++) {
+      appData.numberOfScreens += appData.screens[i].count;
+    }
   },
 
   addScreens: function () {
@@ -125,6 +117,7 @@ const appData = {
         id: index,
         name: selectName,
         price: +select.value * +input.value,
+        count: +input.value,
       });
     });
     console.log(appData.screens); // выводим массив в консоль
@@ -160,16 +153,15 @@ const appData = {
 
   showInfo: function () {
     getInput.value = appData.screenPrice;
-    getInputCount.value = numberOfScreens;
+    getInputCount.value = appData.numberOfScreens;
     getInputServicePrice.value =
       appData.serviceNumberPrice + appData.servicePrecentPrice;
     getInputFullPrice.value = appData.fullPrice;
-    getInputRollback.value = appData.costIncludingInterest;
+    getInputRollback.value = +appData.costIncludingInterest;
   },
   // запускаем метод addScreens, который пушит в screens значения
   start: function () {
     appData.addScreens();
-    appData.NumberOfScreens();
     appData.addServices();
     appData.addPrices();
     appData.showInfo();
@@ -222,15 +214,16 @@ const appData = {
 //  },
 //};
 
-getInputRange.addEventListener("input", function () {
-  rangeSpan.value = +getInputRange.value;
-  rangeSpan.innerHTML = getInputRange.value + "%";
-  console.log(rangeSpan.value);
-});
-
 //Блок объявления функций
 
 //Функциональный блок
+rangeSpan.value = 0;
+
+getInputRange.addEventListener("input", function () {
+  rangeSpan.innerHTML = getInputRange.value + "%";
+  rangeSpan.value = +getInputRange.value;
+  console.log(rangeSpan.value);
+});
 
 appData.init(); // запуск метода init
 
