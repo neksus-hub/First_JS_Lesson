@@ -12,6 +12,10 @@ const getInputCount = document.querySelectorAll("input.total-input")[1];
 const getInputServicePrice = document.querySelectorAll("input.total-input")[2];
 const getInputFullPrice = document.querySelectorAll("input.total-input")[3];
 const getInputRollback = document.querySelectorAll("input.total-input")[4];
+
+const getInputRange = document.querySelector("input[type=range]");
+const rangeSpan = document.querySelector(".range-value");
+
 let numberScreens = document.querySelectorAll(
   ".screen>.main-controls__input>input"
 )[0];
@@ -32,6 +36,7 @@ const appData = {
   adaptive: true,
   rollback: 10,
   fullPrice: 0,
+  costIncludingInterest: 0,
   servicePrecentPrice: 0,
   serviceNumberPrice: 0,
   servicesPercent: {},
@@ -103,6 +108,9 @@ const appData = {
       appData.servicePrecentPrice +
       appData.serviceNumberPrice +
       +appData.screenPrice;
+
+    appData.costIncludingInterest =
+      appData.fullPrice - (appData.fullPrice * getSpan.value) / 100;
   },
 
   addScreens: function () {
@@ -156,8 +164,8 @@ const appData = {
     getInputServicePrice.value =
       appData.serviceNumberPrice + appData.servicePrecentPrice;
     getInputFullPrice.value = appData.fullPrice;
+    getInputRollback.value = appData.costIncludingInterest;
   },
-
   // запускаем метод addScreens, который пушит в screens значения
   start: function () {
     appData.addScreens();
@@ -213,6 +221,12 @@ const appData = {
 //    }
 //  },
 //};
+
+getInputRange.addEventListener("input", function () {
+  rangeSpan.value = +getInputRange.value;
+  rangeSpan.innerHTML = getInputRange.value + "%";
+  console.log(rangeSpan.value);
+});
 
 //Блок объявления функций
 
