@@ -53,23 +53,21 @@ const appData = {
   },
 
   ifEmpty: function () {
-    getScreenClass = document.querySelectorAll(".screen");
-
     getScreenClass.forEach(function (item) {
       const input = item.querySelector(".main-controls__input>input");
       const select = item.querySelector("select");
-
-      if (input.value === "" || select === "") {
+      if (input.value === "" || select.value === "") {
         counter = 0;
       } else {
         counter = 1;
       }
+      if (counter === 0) {
+        startBtn.addEventListener("click", appData.ifEmpty);
+        alert("Поля должны быть заполнены!");
+      }
     });
 
-    if (counter === 0) {
-      startBtn.addEventListener("click", appData.ifEmpty);
-      alert("Поля должны быть заполнены!");
-    } else if (counter === 1) {
+    if (counter === 1) {
       appData.start();
     }
   },
@@ -102,7 +100,7 @@ const appData = {
       appData.fullPrice + (appData.fullPrice / 100) * +getSpan.value;
 
     for (let i = 0; i <= appData.screens.length - 1; i++) {
-      appData.numberOfScreens += appData.screens[i].count;
+      appData.numberOfScreens += +appData.screens[i].count;
     }
   },
 
@@ -121,13 +119,14 @@ const appData = {
         count: +input.value,
       });
     });
-    console.log(appData.screens); // выводим массив в консоль
   },
 
   addScreenBlock: function () {
     // клонирует блок
     const cloneScreensBlock = getScreenClass[0].cloneNode(true); // создаем переменную, которая явл. клоном блока
     getScreenClass[getScreenClass.length - 1].after(cloneScreensBlock); // после последнего блока вставляем новый
+    getScreenClass = document.querySelectorAll(".screen");
+    startBtn.addEventListener("click", appData.ifEmpty);
   },
 
   addServices: function () {
@@ -168,7 +167,6 @@ const appData = {
     appData.showInfo();
     //appData.getServicePercentPrices();
     //appData.logger();
-    console.log(appData);
   },
 
   ucFirst: function (str) {
@@ -181,11 +179,6 @@ const appData = {
     appData.servicePrecentPrice =
       appData.fullPrice -
       Math.floor((appData.fullPrice / 100) * appData.rollback);
-  },
-
-  isString: function (str) {
-    // проверка на строку
-    return isNaN(str);
   },
 };
 
