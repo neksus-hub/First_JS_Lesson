@@ -12,14 +12,17 @@ const getInputCount = document.querySelectorAll("input.total-input")[1];
 const getInputServicePrice = document.querySelectorAll("input.total-input")[2];
 const getInputFullPrice = document.querySelectorAll("input.total-input")[3];
 const getInputRollback = document.querySelectorAll("input.total-input")[4];
-const numberScreens = document.querySelectorAll(
+let numberScreens = document.querySelectorAll(
   ".screen>.main-controls__input>input"
 )[0];
 
-const getSpan = document.querySelector(".main-controls__range>.range-value");
+let getElement = document.querySelectorAll(".element")[0];
+let getSelects = document.querySelectorAll(".views-select");
+let getSpan = document.querySelector(".main-controls__range>.range-value");
 let getScreenClass = document.querySelectorAll(".screen");
 
-console.log(numberScreens);
+let counter = 0;
+let numberOfScreens = 0;
 
 const appData = {
   // Объект
@@ -33,12 +36,48 @@ const appData = {
   serviceNumberPrice: 0,
   servicesPercent: {},
   servicesNumber: {},
+  screensSecond: [],
 
   init: function () {
     // метод Inin запускает методы
     appData.addTitle(); // добавляет заголовок
-    startBtn.addEventListener("click", appData.start); // по клику на кнопку "Расчитать" запускает метод addScreens
+    startBtn.addEventListener("click", appData.ifEmpty);
     buttonPlus.addEventListener("click", appData.addScreenBlock); // по клику на кнопку "+" клонирует блок
+  },
+
+  ifEmpty: function () {
+    getScreenClass = document.querySelectorAll(".screen");
+
+    getScreenClass.forEach(function (item) {
+      const input = item.querySelector(".main-controls__input>input");
+      const select = item.querySelector("select");
+
+      if (input.value === "" || select === "") {
+        counter = 0;
+      } else {
+        counter = 1;
+      }
+    });
+
+    if (counter === 0) {
+      startBtn.addEventListener("click", appData.ifEmpty);
+      alert("Поля должны быть заполнены!");
+    } else if (counter === 1) {
+      appData.start();
+    }
+  },
+
+  NumberOfScreens: function () {
+    numberScreens = document.querySelectorAll(
+      ".screen>.main-controls__input>input"
+    );
+
+    for (let i = 0; i <= numberScreens.length - 1; i++) {
+      if (numberScreens[i].value !== "") {
+        numberOfScreens += +numberScreens[i].value;
+      }
+    }
+    console.log(numberScreens);
   },
 
   addTitle: function () {
@@ -113,7 +152,7 @@ const appData = {
 
   showInfo: function () {
     getInput.value = appData.screenPrice;
-    getInputCount.value = +numberScreens.value;
+    getInputCount.value = numberOfScreens;
     getInputServicePrice.value =
       appData.serviceNumberPrice + appData.servicePrecentPrice;
     getInputFullPrice.value = appData.fullPrice;
@@ -122,6 +161,7 @@ const appData = {
   // запускаем метод addScreens, который пушит в screens значения
   start: function () {
     appData.addScreens();
+    appData.NumberOfScreens();
     appData.addServices();
     appData.addPrices();
     appData.showInfo();
