@@ -8,8 +8,6 @@ const getInput = document.querySelectorAll("input.total-input");
 const getSpan = document.querySelector(".main-controls__range>.range-value");
 let getScreenClass = document.querySelectorAll(".screen");
 
-console.log("hello, world");
-
 const appData = {
   // Объект
   title: "",
