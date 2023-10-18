@@ -51,8 +51,14 @@ const appData = {
     }
 
     for (let key in appData.servicesPercent) {
-      appData.servicePrecentPrice += appData.servicesPercent[key];
+      appData.servicePrecentPrice +=
+        appData.screenPrice * (appData.servicesPercent[key] / 100);
     }
+
+    appData.fullPrice =
+      appData.servicePrecentPrice +
+      appData.serviceNumberPrice +
+      appData.screenPrice;
   },
 
   addScreens: function () {
@@ -107,7 +113,6 @@ const appData = {
     appData.addScreens();
     appData.addServices();
     appData.addPrices();
-    //appData.getFullPrice();
     //appData.getServicePercentPrices();
     //appData.logger();
     console.log(appData);
@@ -129,11 +134,6 @@ const appData = {
     } else if (price <= 0) {
       return "Что-то пошло не так";
     }
-  },
-
-  getFullPrice: function () {
-    // считает полную стоимость всех работ
-    appData.fullPrice = appData.screenPrice + appData.allServicePrices;
   },
 
   getServicePercentPrices: function () {
