@@ -41,39 +41,6 @@ const appData = {
     document.title = title.textContent;
   },
 
-  asking: function () {
-    // спрашивает какие дополнительные типы услуг нам нужны и выполняет проверки на число и на строку
-    for (let i = 0; i < 2; i++) {
-      let nameFirst = "";
-      let nameSecond = "";
-      let sum = 0;
-
-      if (i === 0) {
-        do {
-          nameFirst = prompt(
-            "Какой дополнительный тип услуги нужен?",
-            "метрика"
-          );
-        } while (!isNaN(nameFirst));
-        do {
-          sum = prompt("Сколько это будет стоить?");
-        } while (!appData.isNumber(sum));
-        appData.services[nameFirst] = +sum;
-      } else if (i === 1) {
-        do {
-          nameSecond = prompt(
-            "Какой дополнительный тип услуги нужен?",
-            "метрика"
-          );
-        } while (!isNaN(nameSecond));
-        do {
-          sum = prompt("Сколько это будет стоить?");
-        } while (!appData.isNumber(sum));
-        appData.services[nameSecond] = +sum; // суммирует стоимость дополнительных услуг
-      }
-    }
-  },
-
   addPrices: function () {
     //
     appData.screenPrice = appData.screens.reduce(function (sum, item) {
@@ -136,9 +103,7 @@ const appData = {
   start: function () {
     appData.addScreens();
     appData.addServices();
-    //appData.asking();
     //appData.addPrices();
-    //appData.ucFirst(appData.title.trim());
     //appData.getFullPrice();
     //appData.getServicePercentPrices();
     //appData.logger();
@@ -178,19 +143,20 @@ const appData = {
     // проверка на строку
     return isNaN(str);
   },
-
-  logger: function () {
-    // выводит в консоль методы объекта appData
-    console.log(appData.services);
-    console.log(appData.fullPrice);
-    console.log(appData.servicePrecentPrice);
-    console.log(appData.screens);
-
-    for (let key in appData) {
-      console.log("Свойство/метод " + key + " " + "Значение: " + appData[key]);
-    }
-  },
 };
+
+//  logger: function () {
+//    // выводит в консоль методы объекта appData
+//    console.log(appData.services);
+//    console.log(appData.fullPrice);
+//    console.log(appData.servicePrecentPrice);
+//    console.log(appData.screens);
+//
+//    for (let key in appData) {
+//      console.log("Свойство/метод " + key + " " + "Значение: " + appData[key]);
+//    }
+//  },
+//};
 
 //Блок объявления функций
 
