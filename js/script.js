@@ -1,10 +1,18 @@
 "use strict";
 const title = document.getElementsByTagName("h1")[0];
+
 const startBtn = document.getElementsByClassName("handler_btn")[0];
 const buttonPlus = document.querySelector(".screen-btn");
+
 const otherItemsPercent = document.querySelectorAll(".other-items.percent");
 const otherItemsNumber = document.querySelectorAll(".other-items.number");
-const getInput = document.querySelectorAll("input.total-input");
+
+const getInput = document.querySelectorAll("input.total-input")[0];
+const getInputCount = document.querySelectorAll("input.total-input")[1];
+const getInputServicePrice = document.querySelectorAll("input.total-input")[2];
+const getInputFullPrice = document.querySelectorAll("input.total-input")[3];
+const getInputRollback = document.querySelectorAll("input.total-input")[4];
+
 const getSpan = document.querySelector(".main-controls__range>.range-value");
 let getScreenClass = document.querySelectorAll(".screen");
 
@@ -18,12 +26,13 @@ const appData = {
   fullPrice: 0,
   servicePrecentPrice: 0,
   allServicePrices: 0,
-  services: {},
+  servicesPircent: {},
+  servicesNumber: {},
 
   init: function () {
     // метод Inin запускает методы
     appData.addTitle(); // добавляет заголовок
-    startBtn.addEventListener("click", appData.addScreens); // по клику на кнопку "Расчитать" запускает метод addScreens
+    startBtn.addEventListener("click", appData.start); // по клику на кнопку "Расчитать" запускает метод addScreens
     buttonPlus.addEventListener("click", appData.addScreenBlock); // по клику на кнопку "+" клонирует блок
   },
 
@@ -98,9 +107,35 @@ const appData = {
     getScreenClass[getScreenClass.length - 1].after(cloneScreensBlock); // после последнего блока вставляем новый
   },
 
+  addServices: function () {
+    otherItemsPercent.forEach(function (item) {
+      const check = item.querySelector("input[type=checkbox]");
+      const label = item.querySelector("label");
+      const input = item.querySelector("input[type=text]");
+
+      if (check.checked) {
+        appData.servicesPircent[label.textContent] = +input.value;
+      }
+    });
+
+    otherItemsNumber.forEach(function (item) {
+      const check = item.querySelector("input[type=checkbox]");
+      const label = item.querySelector("label");
+      const input = item.querySelector("input[type=text]");
+
+      if (check.checked) {
+        appData.servicesNumber[label.textContent] = +input.value;
+      }
+    });
+    console.log(appData);
+  },
+
+  showInfo: function () {},
+
   // запускаем метод addScreens, который пушит в screens значения
   start: function () {
     appData.addScreens();
+    appData.addServices();
     //appData.asking();
     //appData.addPrices();
     //appData.ucFirst(appData.title.trim());
