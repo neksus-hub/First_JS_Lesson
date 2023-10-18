@@ -175,19 +175,6 @@ const appData = {
     appData.title = str[0].toUpperCase() + str.slice(1).toLowerCase();
   },
 
-  getRollBackMessage: function (price) {
-    // дает информацию о скидке
-    if (price >= 30000) {
-      return "Даем скидку в 10%";
-    } else if (price >= 15000 && price < 30000) {
-      return "Даем скидку в 5%";
-    } else if (price < 15000 && price >= 0) {
-      return "Скидка не предусмотрена";
-    } else if (price <= 0) {
-      return "Что-то пошло не так";
-    }
-  },
-
   getServicePercentPrices: function () {
     // считает стоимость всех работ с учётом отката посреднику
     appData.servicePrecentPrice =
