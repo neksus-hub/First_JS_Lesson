@@ -25,8 +25,8 @@ const appData = {
   rollback: 10,
   fullPrice: 0,
   servicePrecentPrice: 0,
-  allServicePrices: 0,
-  servicesPircent: {},
+  serviceNumberPrice: 0,
+  servicesPercent: {},
   servicesNumber: {},
 
   init: function () {
@@ -42,12 +42,16 @@ const appData = {
   },
 
   addPrices: function () {
-    //
-    appData.screenPrice = appData.screens.reduce(function (sum, item) {
-      return sum + item.price;
-    }, 0);
-    for (let key in appData.services) {
-      appData.allServicePrices += appData.services[key];
+    for (let screen of appData.screens) {
+      appData.screenPrice += +screen.price;
+    }
+
+    for (let key in appData.servicesNumber) {
+      appData.serviceNumberPrice += appData.servicesNumber[key];
+    }
+
+    for (let key in appData.servicesPercent) {
+      appData.servicePrecentPrice += appData.servicesPercent[key];
     }
   },
 
@@ -81,7 +85,7 @@ const appData = {
       const input = item.querySelector("input[type=text]");
 
       if (check.checked) {
-        appData.servicesPircent[label.textContent] = +input.value;
+        appData.servicesPercent[label.textContent] = +input.value;
       }
     });
 
@@ -94,7 +98,6 @@ const appData = {
         appData.servicesNumber[label.textContent] = +input.value;
       }
     });
-    console.log(appData);
   },
 
   showInfo: function () {},
@@ -103,10 +106,11 @@ const appData = {
   start: function () {
     appData.addScreens();
     appData.addServices();
-    //appData.addPrices();
+    appData.addPrices();
     //appData.getFullPrice();
     //appData.getServicePercentPrices();
     //appData.logger();
+    console.log(appData);
   },
 
   ucFirst: function (str) {
