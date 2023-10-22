@@ -37,6 +37,7 @@ let getScreenClass = document.querySelectorAll(".screen");
 
 let counter = 0;
 let numberOfScreens = 0;
+let CMSPercent = 0;
 
 const appData = {
   // Объект
@@ -51,6 +52,7 @@ const appData = {
   servicePrecentPrice: 0,
   serviceNumberPrice: 0,
   numberOfScreens: 0,
+  fullPriceWithCMSPercent: 0,
   servicesPercent: {},
   servicesNumber: {},
   screensSecond: [],
@@ -148,6 +150,10 @@ const appData = {
       } else {
         OtherBlock.style.display = "none";
       }
+
+      if (CMSVariants.value === "50") {
+        CMSPercent = +CMSVariants.value;
+      }
     });
   },
 
@@ -173,8 +179,12 @@ const appData = {
     this.fullPrice =
       +this.servicePrecentPrice + +this.serviceNumberPrice + +this.screenPrice;
 
+    this.fullPriceWithCMSPercent =
+      this.fullPrice + (this.fullPrice / 100) * CMSPercent;
+
     this.costIncludingInterest =
-      this.fullPrice + (this.fullPrice / 100) * +getSpan.value;
+      this.fullPriceWithCMSPercent +
+      (this.fullPriceWithCMSPercent / 100) * +getSpan.value;
 
     for (let i = 0; i <= this.screens.length - 1; i++) {
       this.numberOfScreens += +this.screens[i].count;
@@ -234,7 +244,7 @@ const appData = {
     getInputCount.value = this.numberOfScreens;
     getInputServicePrice.value =
       this.serviceNumberPrice + this.servicePrecentPrice;
-    getInputFullPrice.value = this.fullPrice;
+    getInputFullPrice.value = this.fullPriceWithCMSPercent;
     getInputRollback.value = +this.costIncludingInterest;
   },
   // запускаем метод addScreens, который пушит в screens значения
