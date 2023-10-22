@@ -53,7 +53,7 @@ const appData = {
   },
 
   ifEmpty: function () {
-    getScreenClass.forEach(function (item) {
+    getScreenClass.forEach((item) => {
       const input = item.querySelector(".main-controls__input>input");
       const select = item.querySelector("select");
       if (input.value === "" || select.value === "") {
@@ -130,7 +130,7 @@ const appData = {
   },
 
   addServices: function () {
-    otherItemsPercent.forEach(function (item) {
+    otherItemsPercent.forEach((item) => {
       const check = item.querySelector("input[type=checkbox]");
       const label = item.querySelector("label");
       const input = item.querySelector("input[type=text]");
@@ -140,7 +140,7 @@ const appData = {
       }
     });
 
-    otherItemsNumber.forEach(function (item) {
+    otherItemsNumber.forEach((item) => {
       const check = item.querySelector("input[type=checkbox]");
       const label = item.querySelector("label");
       const input = item.querySelector("input[type=text]");
@@ -200,7 +200,7 @@ const appData = {
 //Функциональный блок
 rangeSpan.value = 0;
 
-getInputRange.addEventListener("input", function () {
+getInputRange.addEventListener("input", () => {
   rangeSpan.innerHTML = getInputRange.value + "%";
   rangeSpan.value = +getInputRange.value;
   getInputRollback.value = appData.costIncludingInterest =
