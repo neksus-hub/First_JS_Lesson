@@ -3,6 +3,8 @@ const title = document.getElementsByTagName("h1")[0];
 
 const startBtn = document.getElementsByClassName("handler_btn")[0];
 const buttonPlus = document.querySelector(".screen-btn");
+const resetBtn = document.getElementById("reset");
+console.log(resetBtn);
 
 const otherItemsPercent = document.querySelectorAll(".other-items.percent");
 const otherItemsNumber = document.querySelectorAll(".other-items.number");
@@ -48,8 +50,8 @@ const appData = {
   init: function () {
     // метод Inin запускает методы
     appData.addTitle(); // добавляет заголовок
-    startBtn.addEventListener("click", appData.ifEmpty);
-    buttonPlus.addEventListener("click", appData.addScreenBlock); // по клику на кнопку "+" клонирует блок
+    startBtn.addEventListener("click", this.ifEmpty);
+    buttonPlus.addEventListener("click", this.addScreenBlock); // по клику на кнопку "+" клонирует блок
   },
 
   ifEmpty: function () {
@@ -72,35 +74,46 @@ const appData = {
     }
   },
 
+  blockStart: function () {
+    startBtn.style.display = "none";
+    resetBtn.style.display = "flex";
+
+    getScreenClass.forEach((item) => {
+      const input = item.querySelector(".main-controls__input>input");
+      const select = item.querySelector("select");
+
+      input.disabled = true;
+      select.disabled = true;
+    });
+  },
+
   addTitle: function () {
     // добавляет title во вкладку
     document.title = title.textContent;
   },
 
   addPrices: function () {
-    for (let screen of appData.screens) {
-      appData.screenPrice += +screen.price;
+    for (let screen of this.screens) {
+      this.screenPrice += +screen.price;
     }
 
-    for (let key in appData.servicesNumber) {
-      appData.serviceNumberPrice += +appData.servicesNumber[key];
+    for (let key in this.servicesNumber) {
+      this.serviceNumberPrice += +this.servicesNumber[key];
     }
 
-    for (let key in appData.servicesPercent) {
-      appData.servicePrecentPrice +=
-        +appData.screenPrice * (+appData.servicesPercent[key] / 100);
+    for (let key in this.servicesPercent) {
+      this.servicePrecentPrice +=
+        +this.screenPrice * (+this.servicesPercent[key] / 100);
     }
 
-    appData.fullPrice =
-      +appData.servicePrecentPrice +
-      +appData.serviceNumberPrice +
-      +appData.screenPrice;
+    this.fullPrice =
+      +this.servicePrecentPrice + +this.serviceNumberPrice + +this.screenPrice;
 
-    appData.costIncludingInterest =
-      appData.fullPrice + (appData.fullPrice / 100) * +getSpan.value;
+    this.costIncludingInterest =
+      this.fullPrice + (this.fullPrice / 100) * +getSpan.value;
 
-    for (let i = 0; i <= appData.screens.length - 1; i++) {
-      appData.numberOfScreens += +appData.screens[i].count;
+    for (let i = 0; i <= this.screens.length - 1; i++) {
+      this.numberOfScreens += +this.screens[i].count;
     }
   },
 
@@ -111,7 +124,7 @@ const appData = {
       const select = screen.querySelector("select"); // ищет в каждом новом блоке select и input
       const input = screen.querySelector("input");
       const selectName = select.options[select.selectedIndex].textContent; // переменной selectName присваивается текстовое значение того options которой мы выбрали
-      appData.screens.push({
+      this.screens.push({
         // в массив screens передаются значения индекса, имени, стоимости выбранного экрана
         id: index,
         name: selectName,
@@ -126,7 +139,7 @@ const appData = {
     const cloneScreensBlock = getScreenClass[0].cloneNode(true); // создаем переменную, которая явл. клоном блока
     getScreenClass[getScreenClass.length - 1].after(cloneScreensBlock); // после последнего блока вставляем новый
     getScreenClass = document.querySelectorAll(".screen");
-    startBtn.addEventListener("click", appData.ifEmpty);
+    startBtn.addEventListener("click", this.ifEmpty);
   },
 
   addServices: function () {
@@ -136,7 +149,7 @@ const appData = {
       const input = item.querySelector("input[type=text]");
 
       if (check.checked) {
-        appData.servicesPercent[label.textContent] = +input.value;
+        this.servicesPercent[label.textContent] = +input.value;
       }
     });
 
@@ -146,58 +159,34 @@ const appData = {
       const input = item.querySelector("input[type=text]");
 
       if (check.checked) {
-        appData.servicesNumber[label.textContent] = +input.value;
+        this.servicesNumber[label.textContent] = +input.value;
+        console.log(this.servicesNumber);
       }
     });
   },
 
   showInfo: function () {
-    getInput.value = appData.screenPrice;
-    getInputCount.value = appData.numberOfScreens;
+    getInput.value = this.screenPrice;
+    getInputCount.value = this.numberOfScreens;
     getInputServicePrice.value =
-      appData.serviceNumberPrice + appData.servicePrecentPrice;
-    getInputFullPrice.value = appData.fullPrice;
-    getInputRollback.value = +appData.costIncludingInterest;
+      this.serviceNumberPrice + this.servicePrecentPrice;
+    getInputFullPrice.value = this.fullPrice;
+    getInputRollback.value = +this.costIncludingInterest;
   },
   // запускаем метод addScreens, который пушит в screens значения
   start: function () {
-    appData.addScreens();
-    appData.addServices();
-    appData.addPrices();
-    appData.showInfo();
-    //appData.getServicePercentPrices();
-    //appData.logger();
-  },
-
-  ucFirst: function (str) {
-    // преобразует первый символ в заглавный
-    appData.title = str[0].toUpperCase() + str.slice(1).toLowerCase();
-  },
-
-  getServicePercentPrices: function () {
-    // считает стоимость всех работ с учётом отката посреднику
-    appData.servicePrecentPrice =
-      appData.fullPrice -
-      Math.floor((appData.fullPrice / 100) * appData.rollback);
+    this.blockStart();
+    this.addScreens();
+    this.addServices();
+    this.addPrices();
+    this.showInfo();
   },
 };
-
-//  logger: function () {
-//    // выводит в консоль методы объекта appData
-//    console.log(appData.services);
-//    console.log(appData.fullPrice);
-//    console.log(appData.servicePrecentPrice);
-//    console.log(appData.screens);
-//
-//    for (let key in appData) {
-//      console.log("Свойство/метод " + key + " " + "Значение: " + appData[key]);
-//    }
-//  },
-//};
 
 //Блок объявления функций
 
 //Функциональный блок
+
 rangeSpan.value = 0;
 
 getInputRange.addEventListener("input", () => {
