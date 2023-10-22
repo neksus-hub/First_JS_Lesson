@@ -4,7 +4,6 @@ const title = document.getElementsByTagName("h1")[0];
 const startBtn = document.getElementsByClassName("handler_btn")[0];
 const buttonPlus = document.querySelector(".screen-btn");
 const resetBtn = document.getElementById("reset");
-console.log(resetBtn);
 
 const otherItemsPercent = document.querySelectorAll(".other-items.percent");
 const otherItemsNumber = document.querySelectorAll(".other-items.number");
@@ -17,6 +16,9 @@ const getInputRollback = document.querySelectorAll("input.total-input")[4];
 
 const getInputRange = document.querySelector("input[type=range]");
 const rangeSpan = document.querySelector(".range-value");
+
+const checkCMS = document.getElementById("cms-open");
+const CMSVariants = document.querySelector(".hidden-cms-variants");
 
 let numberScreens = document.querySelectorAll(
   ".screen>.main-controls__input>input"
@@ -50,6 +52,7 @@ const appData = {
   init: function () {
     // метод Inin запускает методы
     appData.addTitle(); // добавляет заголовок
+    checkCMS.addEventListener("click", this.checkCmsOpen);
     startBtn.addEventListener("click", this.ifEmpty);
     buttonPlus.addEventListener("click", this.addScreenBlock); // по клику на кнопку "+" клонирует блок
   },
@@ -120,6 +123,15 @@ const appData = {
         totalInputs[i].value = "";
       }
     });
+  },
+
+  checkCmsOpen: function () {
+    if (checkCMS.checked) {
+      CMSVariants.style.display = "flex";
+    } else {
+      CMSVariants.style.display = "none";
+    }
+    checkCMS.addEventListener("click", this.checkCmsOpen);
   },
 
   addTitle: function () {
@@ -233,5 +245,4 @@ getInputRange.addEventListener("input", () => {
 });
 
 appData.init(); // запуск метода init
-
 // мусорный блок
