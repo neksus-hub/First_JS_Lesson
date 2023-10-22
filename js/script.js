@@ -84,6 +84,41 @@ const appData = {
 
       input.disabled = true;
       select.disabled = true;
+
+      resetBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        this.reset();
+      });
+    });
+  },
+
+  reset: function () {
+    const totalInputs = document.querySelectorAll("input.total-input");
+
+    startBtn.style.display = "flex";
+    resetBtn.style.display = "none";
+
+    getScreenClass.forEach((item) => {
+      const input = item.querySelector(".main-controls__input>input");
+      const select = item.querySelector("select");
+
+      for (let i = 0; i <= getScreenClass.length - 1; i++) {
+        if (i > 0) {
+          getScreenClass[i].remove();
+        }
+      }
+
+      input.value = "";
+      select.value = "";
+
+      input.disabled = false;
+      select.disabled = false;
+    });
+
+    totalInputs.forEach((item) => {
+      for (let i = 0; totalInputs.length - 1; i++) {
+        totalInputs[i].value = "";
+      }
     });
   },
 
