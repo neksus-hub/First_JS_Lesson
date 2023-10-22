@@ -18,7 +18,13 @@ const getInputRange = document.querySelector("input[type=range]");
 const rangeSpan = document.querySelector(".range-value");
 
 const checkCMS = document.getElementById("cms-open");
-const CMSVariants = document.querySelector(".hidden-cms-variants");
+const CMSVariants = document.querySelector(
+  ".hidden-cms-variants>.main-controls__select>select"
+);
+const CMSVariantsBlock = document.querySelector(".hidden-cms-variants");
+const OtherBlock = document.querySelector(
+  ".hidden-cms-variants>.main-controls__input"
+);
 
 let numberScreens = document.querySelectorAll(
   ".screen>.main-controls__input>input"
@@ -127,11 +133,22 @@ const appData = {
 
   checkCmsOpen: function () {
     if (checkCMS.checked) {
-      CMSVariants.style.display = "flex";
+      CMSVariantsBlock.style.display = "flex";
+      appData.showOtherBlock();
     } else {
-      CMSVariants.style.display = "none";
+      CMSVariantsBlock.style.display = "none";
     }
     checkCMS.addEventListener("click", this.checkCmsOpen);
+  },
+
+  showOtherBlock: function () {
+    CMSVariants.addEventListener("change", () => {
+      if (CMSVariants.value === "other") {
+        OtherBlock.style.display = "flex";
+      } else {
+        OtherBlock.style.display = "none";
+      }
+    });
   },
 
   addTitle: function () {
