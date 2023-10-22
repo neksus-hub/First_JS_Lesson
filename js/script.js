@@ -127,10 +127,12 @@ const appData = {
     });
 
     totalInputs.forEach((item) => {
-      for (let i = 0; totalInputs.length - 1; i++) {
-        totalInputs[i].value = "";
-      }
+      item.value = "";
     });
+
+    CMSVariantsBlock.remove();
+
+    checkCMS.checked = false;
   },
 
   checkCmsOpen: function () {
@@ -267,7 +269,8 @@ getInputRange.addEventListener("input", () => {
   rangeSpan.innerHTML = getInputRange.value + "%";
   rangeSpan.value = +getInputRange.value;
   getInputRollback.value = appData.costIncludingInterest =
-    appData.fullPrice + (appData.fullPrice / 100) * +getInputRange.value;
+    appData.fullPriceWithCMSPercent +
+    (appData.fullPriceWithCMSPercent / 100) * +getInputRange.value;
   console.log(rangeSpan.value);
 });
 
